@@ -10,7 +10,7 @@ import java.util.Date;
 @Setter
 public class TransactionDto {
 
-    private String transactionId;
+    private int transactionId;
     private Date date;
     private BigDecimal amount;
     private String description;

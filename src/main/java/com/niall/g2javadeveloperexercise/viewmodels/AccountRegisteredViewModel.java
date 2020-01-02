@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AccountRegisteredViewModel {
-    private String accountNumber;
+    private int accountNumber;
     private String pin;
 }

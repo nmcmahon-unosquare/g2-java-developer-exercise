@@ -1,10 +1,10 @@
 package com.niall.g2javadeveloperexercise.controllers;
 
+import com.niall.g2javadeveloperexercise.auth.AuthenticatedAccount;
 import com.niall.g2javadeveloperexercise.controllers.requests.RegisterAccountRequest;
 import com.niall.g2javadeveloperexercise.dtos.AccountDto;
 import com.niall.g2javadeveloperexercise.dtos.AccountRegisteredDto;
 import com.niall.g2javadeveloperexercise.services.AccountService;
-import com.niall.g2javadeveloperexercise.auth.AuthenticatedAccount;
 import com.niall.g2javadeveloperexercise.viewmodels.AccountRegisteredViewModel;
 import com.niall.g2javadeveloperexercise.viewmodels.AccountViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class AccountController extends AbstractRestController {
 
     @PostMapping("/getaccountdetails")
     public AccountViewModel getAccountDetails() {
-        String accountNumber = authenticatedAccount.getAccountNumber();
+        int accountNumber = authenticatedAccount.getAccountNumber();
         AccountDto accountDto = accountService.getAccountByAccountNumber(accountNumber);
         return mapper.map(accountDto, AccountViewModel.class);
     }

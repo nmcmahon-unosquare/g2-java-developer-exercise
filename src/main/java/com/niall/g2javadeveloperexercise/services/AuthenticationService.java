@@ -4,6 +4,6 @@ import com.niall.g2javadeveloperexercise.dtos.AccountDto;
 
 public interface AuthenticationService {
 
-    AccountDto signIn(String accountNumber, String accountPin);
+    AccountDto signIn(int accountNumber, String accountPin);
 
 }

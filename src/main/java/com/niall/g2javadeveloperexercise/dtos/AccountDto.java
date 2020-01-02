@@ -1,6 +1,5 @@
 package com.niall.g2javadeveloperexercise.dtos;
 
-import com.niall.g2javadeveloperexercise.viewmodels.TransactionViewModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,7 @@ import java.util.List;
 @Setter
 public class AccountDto {
 
-    private String accountNumber;
+    private int accountNumber;
     private String holderFirstName;
     private String holderLastName;
     private BigDecimal balance;

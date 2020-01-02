@@ -18,9 +18,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class AccountServiceImpl extends DataService implements AccountService {
@@ -31,7 +29,7 @@ public class AccountServiceImpl extends DataService implements AccountService {
     private TransactionRepository transactionRepository;
 
     @Override
-    public AccountDto getAccountByAccountNumber(String accountNumber) {
+    public AccountDto getAccountByAccountNumber(int accountNumber) {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new DataNotPresentException(String.format("Account with account number %s not found", accountNumber), AccountServiceImpl.class));;
         List<TransactionDto> recentTransactions = getRecentTransactions(accountNumber);
@@ -56,7 +54,7 @@ public class AccountServiceImpl extends DataService implements AccountService {
         }
     }
 
-    private List<TransactionDto> getRecentTransactions(String accountNumber) {
+    private List<TransactionDto> getRecentTransactions(int accountNumber) {
         List<Transaction> recentTransactions = transactionRepository.getRecentTransactionsForAccount(accountNumber, 5);
         Type listOfTransactions = new TypeToken<List<TransactionDto>>() {}.getType();
         return mapper.map(recentTransactions, listOfTransactions);

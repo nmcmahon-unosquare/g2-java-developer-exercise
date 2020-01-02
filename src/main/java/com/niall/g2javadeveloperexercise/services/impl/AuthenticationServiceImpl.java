@@ -3,9 +3,7 @@ package com.niall.g2javadeveloperexercise.services.impl;
 import com.niall.g2javadeveloperexercise.dtos.AccountDto;
 import com.niall.g2javadeveloperexercise.entities.Account;
 import com.niall.g2javadeveloperexercise.exception.AuthenticationException;
-import com.niall.g2javadeveloperexercise.exception.DataNotPresentException;
 import com.niall.g2javadeveloperexercise.repository.AccountRepository;
-import com.niall.g2javadeveloperexercise.services.AccountService;
 import com.niall.g2javadeveloperexercise.services.AuthenticationService;
 import com.niall.g2javadeveloperexercise.services.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,7 @@ public class AuthenticationServiceImpl extends DataService implements Authentica
     private AccountRepository accountRepository;
 
     @Override
-    public AccountDto signIn(String accountNumber, String accountPin) {
+    public AccountDto signIn(int accountNumber, String accountPin) {
         Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
         if(account.isPresent() && account.get().getPin().equals(accountPin)) {
             return mapper.map(account.get(), AccountDto.class);

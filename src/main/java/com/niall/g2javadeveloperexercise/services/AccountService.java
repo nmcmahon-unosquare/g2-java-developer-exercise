@@ -6,7 +6,7 @@ import com.niall.g2javadeveloperexercise.dtos.AccountRegisteredDto;
 
 public interface AccountService {
 
-    AccountDto getAccountByAccountNumber(String accountNumber);
+    AccountDto getAccountByAccountNumber(int accountNumber);
 
     AccountRegisteredDto createNewAccount(RegisterAccountRequest request);
 }

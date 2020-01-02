@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface AccountRepository extends CrudRepository<Account, String> {
+public interface AccountRepository extends CrudRepository<Account, Integer> {
 
-    Optional<Account> findByAccountNumber(String accountNumber);
+    Optional<Account> findByAccountNumber(int accountNumber);
 
 }

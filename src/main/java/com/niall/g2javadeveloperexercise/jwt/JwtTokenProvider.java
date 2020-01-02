@@ -41,7 +41,7 @@ public class JwtTokenProvider {
     }
 
     public Authentication getAuthentication(String token) {
-        String accountNumber = jwtParser.getAccountNumber(token);
+        int accountNumber = Integer.parseInt(jwtParser.getAccountNumber(token));
         AccountDto account = accountService.getAccountByAccountNumber(accountNumber);
         return new UsernamePasswordAuthenticationToken(account, "", new ArrayList<>());
     }

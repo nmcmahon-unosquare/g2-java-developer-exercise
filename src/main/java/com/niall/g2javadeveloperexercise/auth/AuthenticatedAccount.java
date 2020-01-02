@@ -17,7 +17,7 @@ public class AuthenticatedAccount {
         throw new AuthenticationException("Could not get authenticated account");
     }
 
-    public String getAccountNumber() {
+    public int getAccountNumber() {
         return getAccount().getAccountNumber();
     }
 }

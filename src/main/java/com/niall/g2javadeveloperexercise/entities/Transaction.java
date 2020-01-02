@@ -18,7 +18,7 @@ public class Transaction {
     @Id
     @GeneratedValue
     @Column(name = "transaction_id", nullable = false)
-    private String transactionId;
+    private int transactionId;
 
     @Column(name = "date", nullable = false)
     private Date date;
