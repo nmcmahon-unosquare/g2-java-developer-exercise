@@ -9,4 +9,8 @@ public interface AccountService {
     AccountDto getAccountByAccountNumber(int accountNumber);
 
     AccountRegisteredDto createNewAccount(RegisterAccountRequest request);
+
+    void closeAccount(int accountNumber);
+
+    void addToAccountBalance(int accountNumber, double amount);
 }

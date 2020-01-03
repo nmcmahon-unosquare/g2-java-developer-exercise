@@ -1,5 +1,6 @@
 package com.niall.g2javadeveloperexercise.dtos;
 
+import com.niall.g2javadeveloperexercise.enums.AccountType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ public class AccountDto {
     private String holderFirstName;
     private String holderLastName;
     private BigDecimal balance;
+    private AccountType accountType;
     private List<TransactionDto> recentTransactions;
 
 }

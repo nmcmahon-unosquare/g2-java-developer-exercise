@@ -21,7 +21,11 @@ public class Transaction {
     private int transactionId;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    @Builder.Default
+    private Date date = new Date();
+
+    @Column(name = "transaction_type", nullable = false)
+    private String type;
 
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;

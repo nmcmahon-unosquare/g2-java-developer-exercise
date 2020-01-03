@@ -1,5 +1,6 @@
 package com.niall.g2javadeveloperexercise.entities;
 
+import com.niall.g2javadeveloperexercise.enums.AccountType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,6 +37,9 @@ public class Account {
     @Column(name = "current_balance")
     @Builder.Default
     private BigDecimal balance = new BigDecimal(0);
+
+    @Column(name = "account_type", nullable = false)
+    private AccountType accountType;
 
     private static String generateRandomPin() {
         Random rand = new Random();

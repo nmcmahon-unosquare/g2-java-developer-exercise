@@ -1,5 +1,6 @@
 package com.niall.g2javadeveloperexercise.config;
 
+import com.niall.g2javadeveloperexercise.enums.AccountType;
 import com.niall.g2javadeveloperexercise.jwt.JwtConfigurer;
 import com.niall.g2javadeveloperexercise.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/account/register").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
+                .antMatchers("/transaction/createforaccount").hasRole(AccountType.BUSINESS_ACCOUNT.name())
                 .antMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/v2/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger*").permitAll()

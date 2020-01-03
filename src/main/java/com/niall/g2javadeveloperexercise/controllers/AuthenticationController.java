@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/authentication")
 public class AuthenticationController extends AbstractRestController {
@@ -21,7 +23,7 @@ public class AuthenticationController extends AbstractRestController {
     private JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/signin")
-    public AuthTokenViewModel signin(@RequestBody SignInRequest request) {
+    public AuthTokenViewModel signin(@Valid @RequestBody SignInRequest request) {
         AccountDto account = authenticationService.signIn(request.getAccountNumber(), request.getAccountPin());
         String token = jwtTokenProvider.createBearerToken("" + account.getAccountNumber());
         return new AuthTokenViewModel(token);

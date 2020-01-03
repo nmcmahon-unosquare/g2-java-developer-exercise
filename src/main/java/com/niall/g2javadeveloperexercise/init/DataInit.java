@@ -2,6 +2,7 @@ package com.niall.g2javadeveloperexercise.init;
 
 import com.niall.g2javadeveloperexercise.entities.Account;
 import com.niall.g2javadeveloperexercise.entities.Transaction;
+import com.niall.g2javadeveloperexercise.enums.AccountType;
 import com.niall.g2javadeveloperexercise.repository.AccountRepository;
 import com.niall.g2javadeveloperexercise.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,8 @@ public class DataInit implements ApplicationRunner {
             Transaction transaction = Transaction.builder()
                     .account(account)
                     .date(new Date())
-                    .amount(new BigDecimal(-i))
+                    .amount(new BigDecimal(i))
+                    .type("WITHDRAWAL")
                     .description(String.format("Bought something for £%d", i))
                     .build();
             transactionRepository.save(transaction);
@@ -52,6 +54,7 @@ public class DataInit implements ApplicationRunner {
                     .holderLastName("McMahon")
                     .pin("1234")
                     .holderIdNumber("AB19234")
+                    .accountType(AccountType.BUSINESS_ACCOUNT)
                     .balance(new BigDecimal(0))
                     .build();
             accountRepository.save(account);
