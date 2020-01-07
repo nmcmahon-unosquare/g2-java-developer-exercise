@@ -18,7 +18,7 @@ public class AuthenticationServiceImpl extends DataService implements Authentica
     private AccountRepository accountRepository;
 
     @Override
-    public AccountDto signIn(int accountNumber, String accountPin) {
+    public AccountDto signIn(Integer accountNumber, String accountPin) {
         Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
         if(account.isPresent() && account.get().getPin().equals(accountPin)) {
             return mapper.map(account.get(), AccountDto.class);

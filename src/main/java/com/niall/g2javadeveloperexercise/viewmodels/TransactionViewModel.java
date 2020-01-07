@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 public class TransactionViewModel {
 
-    private int transactionId;
+    private Integer transactionId;
     private Date date;
     private TransactionType type;
     private BigDecimal amount;

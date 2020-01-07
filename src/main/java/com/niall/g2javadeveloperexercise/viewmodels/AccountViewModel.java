@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class AccountViewModel {
 
-    private int accountNumber;
+    private Integer accountNumber;
     private String holderFirstName;
     private String holderLastName;
     private BigDecimal balance;

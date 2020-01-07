@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class SignInRequest {
     @NotNull
-    private int accountNumber;
+    private Integer accountNumber;
     @NotNull
     private String accountPin;
 }

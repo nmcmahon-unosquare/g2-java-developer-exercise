@@ -23,15 +23,24 @@ public class TransactionServiceImpl extends DataService implements TransactionSe
     private AccountService accountService;
 
     @Override
-    public TransactionDto createTransaction(TransactionDto transactionDto, int accountNumber) {
+    public TransactionDto createTransaction(TransactionDto transactionDto, Integer accountNumber) {
         Account account = mapper.map(accountService.getAccountByAccountNumber(accountNumber), Account.class);
         Transaction newTransaction = buildNewTransaction(transactionDto, account);
-        changeAccountBalance(transactionDto, accountNumber);
+        changeAccountBalanceBasedOnTransactionType(transactionDto, accountNumber);
         Transaction savedTransaction = transactionRepository.save(newTransaction);
         return mapper.map(savedTransaction, TransactionDto.class);
     }
 
-    private void changeAccountBalance(TransactionDto transactionDto, int accountNumber) {
+    private void changeAccountBalanceBasedOnTransactionType(TransactionDto transactionDto, Integer accountNumber) {
+        if(transactionDto.getType() != null && transactionDto.getAmount() != null) {
+            changeAccountBalance(transactionDto, accountNumber);
+        }
+        else {
+            throw new BusinessRulesException("Cannot create transaction. Transaction Type and amount are required fields.");
+        }
+    }
+
+    private void changeAccountBalance(TransactionDto transactionDto, Integer accountNumber) {
         if(transactionDto.getType().getBalanceModifierType() == BalanceModifierType.INCREASE) {
             accountService.addToAccountBalance(accountNumber, transactionDto.getAmount().doubleValue());
         }

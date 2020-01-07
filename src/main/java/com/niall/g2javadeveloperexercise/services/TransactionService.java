@@ -4,6 +4,6 @@ import com.niall.g2javadeveloperexercise.dtos.TransactionDto;
 
 public interface TransactionService {
 
-    TransactionDto createTransaction(TransactionDto transaction, int accountNumber);
+    TransactionDto createTransaction(TransactionDto transaction, Integer accountNumber);
 
 }

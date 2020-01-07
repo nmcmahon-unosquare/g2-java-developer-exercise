@@ -31,7 +31,7 @@ public class AccountServiceImpl extends DataService implements AccountService {
     private TransactionRepository transactionRepository;
 
     @Override
-    public AccountDto getAccountByAccountNumber(int accountNumber) {
+    public AccountDto getAccountByAccountNumber(Integer accountNumber) {
         Account account = getByAccountNumber(accountNumber);
         List<TransactionDto> recentTransactions = getRecentTransactions(accountNumber);
         AccountDto accountDto = mapper.map(account, AccountDto.class);
@@ -48,13 +48,13 @@ public class AccountServiceImpl extends DataService implements AccountService {
     }
 
     @Override
-    public void closeAccount(int accountNumber) {
+    public void closeAccount(Integer accountNumber) {
         Account account = getByAccountNumber(accountNumber);
         accountRepository.delete(account);
     }
 
     @Override
-    public void addToAccountBalance(int accountNumber, double amount) {
+    public void addToAccountBalance(Integer accountNumber, double amount) {
         Account account = getByAccountNumber(accountNumber);
         double newBalance = account.getBalance().doubleValue() + amount;
         if(newBalance < 0) {
@@ -72,14 +72,17 @@ public class AccountServiceImpl extends DataService implements AccountService {
         }
     }
 
-    private List<TransactionDto> getRecentTransactions(int accountNumber) {
+    private List<TransactionDto> getRecentTransactions(Integer accountNumber) {
         List<Transaction> recentTransactions = transactionRepository.getRecentTransactionsForAccount(accountNumber, 5);
         Type listOfTransactions = new TypeToken<List<TransactionDto>>() {}.getType();
         return mapper.map(recentTransactions, listOfTransactions);
     }
 
-    private Account getByAccountNumber(int accountNumber) {
-        return accountRepository.findByAccountNumber(accountNumber)
-                .orElseThrow(() -> new DataNotPresentException(String.format("Account with account number %s not found", accountNumber), AccountServiceImpl.class));
+    private Account getByAccountNumber(Integer accountNumber) {
+        if(accountNumber != null) {
+            return accountRepository.findByAccountNumber(accountNumber)
+                    .orElseThrow(() -> new DataNotPresentException(String.format("Account with account number %s not found", accountNumber), AccountServiceImpl.class));
+        }
+        throw new BusinessRulesException("Account number cannot be null.");
     }
 }

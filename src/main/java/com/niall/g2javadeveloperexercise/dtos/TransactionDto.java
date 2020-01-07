@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 public class TransactionDto {
 
-    private int transactionId;
+    private Integer transactionId;
     private Date date = new Date();
     private TransactionType type;
     private BigDecimal amount;

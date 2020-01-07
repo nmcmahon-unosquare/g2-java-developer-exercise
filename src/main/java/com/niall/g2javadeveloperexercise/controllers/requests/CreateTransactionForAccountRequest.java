@@ -19,7 +19,7 @@ public class CreateTransactionForAccountRequest {
     private TransactionType type;
 
     @NotNull
-    private int accountNumber;
+    private Integer accountNumber;
 
     private String description;
 }

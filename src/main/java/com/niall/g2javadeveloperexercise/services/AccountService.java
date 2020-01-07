@@ -6,11 +6,11 @@ import com.niall.g2javadeveloperexercise.dtos.AccountRegisteredDto;
 
 public interface AccountService {
 
-    AccountDto getAccountByAccountNumber(int accountNumber);
+    AccountDto getAccountByAccountNumber(Integer accountNumber);
 
     AccountRegisteredDto createNewAccount(RegisterAccountRequest request);
 
-    void closeAccount(int accountNumber);
+    void closeAccount(Integer accountNumber);
 
-    void addToAccountBalance(int accountNumber, double amount);
+    void addToAccountBalance(Integer accountNumber, double amount);
 }

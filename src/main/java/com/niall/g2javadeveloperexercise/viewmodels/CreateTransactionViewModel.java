@@ -10,9 +10,9 @@ import java.util.Date;
 @Setter
 public class CreateTransactionViewModel {
 
-    private int transactionId;
+    private Integer transactionId;
     private Date date;
-    private double amount;
+    private Double amount;
     private TransactionType type;
     private String description;
 
