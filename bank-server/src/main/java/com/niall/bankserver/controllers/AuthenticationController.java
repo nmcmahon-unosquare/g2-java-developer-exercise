@@ -6,6 +6,7 @@ import com.niall.bankserver.jwt.JwtTokenProvider;
 import com.niall.bankserver.services.AuthenticationService;
 import com.niall.bankserver.viewmodels.AuthTokenViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/authentication")
+@PreAuthorize("permitAll()")
 public class AuthenticationController extends AbstractRestController {
 
     @Autowired

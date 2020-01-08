@@ -9,6 +9,7 @@ import com.niall.bankserver.viewmodels.AccountRegisteredViewModel;
 import com.niall.bankserver.viewmodels.AccountViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/account")
-@Secured(value = "")
+@PreAuthorize("isAuthenticated()")
 public class AccountController extends AbstractRestController {
 
     @Autowired
@@ -33,6 +34,7 @@ public class AccountController extends AbstractRestController {
         return mapper.map(accountDto, AccountViewModel.class);
     }
 
+    @PreAuthorize("permitAll()")
     @PostMapping("/register")
     public AccountRegisteredViewModel registerAccount(@Valid @RequestBody RegisterAccountRequest request) {
         AccountRegisteredDto newAccount = accountService.createNewAccount(request);
