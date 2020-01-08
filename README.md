@@ -30,3 +30,16 @@ The client is a basic command line interface used to demonstrate some of the cor
 * Make a deposit
 * Make a withdrawal
 * Log out
+
+# Accessing Server Endpoints
+A full list of the server endpoints can be found by starting the server and navigating to http://localhost:8080/swagger-ui.html.
+
+From you can you register a new account with the server using the /account/register endpoint and authenticate with the server using your newly created details.
+
+You can register a new personal or business account. If you have a business account, you can use the transaction/createforaccount to submit debits and checks for accounts that are not yours.
+
+To get a token, use the /authentication/signin endpoint, submit your account number and pin, and you will be returned a bearer token.
+
+To authenticate to make use of all endpoints, click on the "Authorize" button at the top right of the Swagger UI and type "Bearer #token#" where #token# is the value of your bearer token e.g. Bearer eyJhbGciOiJIUzI1NiJ9...
+
+When authenticated, you should be able to make use of all other endpoints. 
